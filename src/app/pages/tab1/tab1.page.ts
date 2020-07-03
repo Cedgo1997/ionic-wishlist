@@ -43,7 +43,11 @@ export class Tab1Page {
             if (data.title.length === 0) {
               return;
             } 
-            this.wishesService.addList(data.title);
+            // id of the list
+            const listId = this.wishesService.addList(data.title);
+            // Now navigate to id add item list page
+            this._router.navigateByUrl(`/tabs/tab1/add/${ listId }`);
+
           }
         }
       ],
