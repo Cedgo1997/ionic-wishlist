@@ -6,15 +6,19 @@
       </ion-back-button>
     </ion-buttons>
 
-    <ion-title>Add List</ion-title>
+    <ion-title> {{ list.title }} </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content color="dark">
   <ion-list color="dark">
     <ion-item color="dark">
-      <ion-label position="floating">New Item</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-label position="floating"> New Item </ion-label>
+      <ion-input
+        type="text"
+        [(ngModel)]="itemName"
+        (keyup.enter)="addItem()"
+      ></ion-input>
     </ion-item>
   </ion-list>
 
@@ -24,10 +28,21 @@
         Thing to do
       </ion-label>
     </ion-list-header>
-    <ion-item color="dark">
-      <ion-checkbox slot="start" color="tertiary"> </ion-checkbox>
+
+    <ion-item
+      color="dark"
+      *ngFor="let item of list.items"
+      class="animated fadeInDown"
+    >
+      <ion-checkbox
+        slot="start"
+        color="tertiary"
+        [(ngModel)]="item.completed"
+        (ionChange)="changeCheck(item)"
+      >
+      </ion-checkbox>
       <ion-label>
-        Remember to eat
+        {{item.desc}}
       </ion-label>
     </ion-item>
   </ion-list>
