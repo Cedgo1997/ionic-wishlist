@@ -56,11 +56,11 @@ export class Tab1Page {
     alert.present();
   }
 
-  selectedList(list:List) {
+  /* selectedList(list:List) {
 
     this._router.navigateByUrl(`/tabs/tab1/add/${list.id}`);
 
     console.log(list);
-  }
+  } */
 
 }
