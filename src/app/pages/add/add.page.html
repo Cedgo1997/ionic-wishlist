@@ -23,7 +23,7 @@
   </ion-list>
 
   <ion-list>
-    <ion-list-header color="dark">
+    <ion-list-header color="dark" *ngIf="this.list.items.length > 0">
       <ion-label>
         Thing to do
       </ion-label>
