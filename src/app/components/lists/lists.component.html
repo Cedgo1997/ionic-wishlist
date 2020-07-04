@@ -1,5 +1,8 @@
 <ion-list color="dark">
-  <ion-item-sliding *ngFor="let list of this.wishService.lists" detail>
+  <ion-item-sliding
+    *ngFor="let list of this.wishService.lists | completedFilter: completed"
+    detail
+  >
     <ion-item color="dark" (click)="selectedList(list)">
       <ion-label>{{ list.title }}</ion-label>
       <ion-note slot="end" color="tertiary">
@@ -9,6 +12,11 @@
     <ion-item-options side="end">
       <ion-item-option color="danger" (click)="deleteList(list)">
         <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+    <ion-item-options side="start">
+      <ion-item-option color="primary">
+        <ion-icon slot="icon-only" name="create"></ion-icon>
       </ion-item-option>
     </ion-item-options>
   </ion-item-sliding>
