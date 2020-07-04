@@ -30,7 +30,7 @@
     </ion-list-header>
 
     <ion-item-sliding
-      *ngFor="let item of list.items"
+      *ngFor="let item of list.items; let i = index"
       class="animated fadeInDown"
     >
       <ion-item color="dark">
@@ -47,7 +47,7 @@
       </ion-item>
 
       <ion-item-options side="end">
-        <ion-item-option (click)="delete(item)" color="danger">
+        <ion-item-option (click)="delete( i )" color="danger">
           <ion-icon slot="icon-only" name="trash"></ion-icon>
         </ion-item-option>
       </ion-item-options>

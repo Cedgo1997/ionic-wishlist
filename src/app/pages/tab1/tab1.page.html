@@ -9,7 +9,7 @@
 <ion-content [fullscreen]="true" color="dark">
 
   <ion-list color="dark">
-    <ion-item *ngFor = "let list of lists" detail color="dark">
+    <ion-item *ngFor = "let list of lists" detail color="dark" (click)="selectedList(list)">
       <ion-label>{{ list.title }}</ion-label>
     </ion-item>
   </ion-list>

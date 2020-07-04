@@ -52,4 +52,9 @@ export class AddPage implements OnInit {
 
     console.log(this.wishService.lists);
   }
+
+  delete(i: number) {
+    this.list.items.splice(i,1);
+    this.wishService.saveStorage();
+  }
 }
