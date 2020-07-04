@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, ViewChild } from "@angular/core";
 import { WishesService } from "src/app/services/wishes.service";
 import { List } from "src/app/models/list.model";
 import { Router } from "@angular/router";
+import { AlertController, IonList } from "@ionic/angular";
 
 @Component({
   selector: "app-lists",
@@ -9,11 +10,18 @@ import { Router } from "@angular/router";
   styleUrls: ["./lists.component.scss"],
 })
 export class ListsComponent implements OnInit {
-
   @Input() completed = true;
 
-  constructor(public wishService: WishesService, private _router: Router) {
-  }
+
+
+  @ViewChild(IonList) list:IonList;
+
+
+  constructor(
+    public wishesService: WishesService,
+    private _router: Router,
+    private alertCtlr: AlertController
+  ) {}
 
   selectedList(list: List) {
     if (this.completed) {
@@ -25,10 +33,50 @@ export class ListsComponent implements OnInit {
     console.log(list);
   }
 
+  deleteList(list: List) {
+    this.wishesService.deleteList(list);
+  }
 
-  deleteList(list:List) {
-    this.wishService.deleteList(list);
+  async editList(list: List) {
+
+    const alert = await this.alertCtlr.create({
+      header: "Edit List",
+      inputs: [
+        {
+          name: "title",
+          value: list.title,
+          type: "text",
+          placeholder: "List Name",
+        },
+      ],
+      buttons: [
+        {
+          text: "Cancel",
+          role: "cancel",
+          handler: () => {
+            console.log("Cancel");
+            this.list.closeSlidingItems();
+          },
+        },
+        {
+          text: "Update",
+          handler: (data) => {
+            if (data.title.length === 0) {
+              return;
+            }
+            // Change title
+            list.title = data.title;
+            this.wishesService.saveStorage();
+            this.list.closeSlidingItems();
+          },
+        },
+      ],
+    });
+
+    alert.present();
+
   }
 
   ngOnInit() {}
+
 }
