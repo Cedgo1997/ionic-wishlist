@@ -9,12 +9,10 @@ import { Router } from "@angular/router";
   styleUrls: ["./lists.component.scss"],
 })
 export class ListsComponent implements OnInit {
-  lists: List[];
 
   @Input() completed = true;
 
-  constructor(private wishService: WishesService, private _router: Router) {
-    this.lists = this.wishService.lists;
+  constructor(public wishService: WishesService, private _router: Router) {
   }
 
   selectedList(list: List) {

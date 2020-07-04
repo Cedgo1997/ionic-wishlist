@@ -37,7 +37,7 @@ export class WishesService {
   }
 
   deleteList(list: List) {
-    this.lists = this.lists.filter((listData) => listData.id !== list.id);
+    this.lists = this.lists.filter(listData => listData.id !== list.id);
     this.saveStorage();
   }
 }

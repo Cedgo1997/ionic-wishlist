@@ -1,5 +1,5 @@
 <ion-list color="dark">
-  <ion-item-sliding *ngFor="let list of lists" detail>
+  <ion-item-sliding *ngFor="let list of this.wishService.lists" detail>
     <ion-item color="dark" (click)="selectedList(list)">
       <ion-label>{{ list.title }}</ion-label>
       <ion-note slot="end" color="tertiary">
